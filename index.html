@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Có Thích Hiển khong</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    background: #fff0f5;
+    font-family: Arial, sans-serif;
+    text-align: center;
+    overflow: hidden;
+}
+
+.container {
+    margin-top: 80px;
+}
+
+h1 {
+    color: #e63946;
+    font-size: 40px;
+}
+
+.sticker {
+    width: 220px;
+    margin: 20px 0;
+    transition: 0.2s;
+}
+
+.buttons {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+#yesBtn {
+    background-color: #ff4d6d;
+    color: white;
+}
+
+#noBtn {
+    background-color: #6c757d;
+    color: white;
+    margin-left: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+    <h1>Lâm có thích Hiển khong? ❤️</h1>
+
+    <img id="sticker" class="sticker"
+         src="https://s3.getstickerpack.com/storage/uploads/sticker-pack/prueba-9/sticker_5.gif?38f6e42ef3749f8d22012b274489878d"
+         alt="cute sticker">
+
+    <div class="buttons">
+        <button id="yesBtn">CÓ</button>
+        <button id="noBtn">KHÔNG :C</button>
+    </div>
+</div>
+
+<script>
+let yesSize = 1;
+let noSize = 1;
+let noClicks = 0;
+let moveRight = 20;
+
+const guiltTexts = [
+    "Lâm chắc chưa 🥺",
+    "Thật sự chắc?? 😭",
+    "Hiển đã mua hoa rồi… 🌹",
+    "Đừng mà Lâm 😳",
+    "Làm ơn đấy 💔",
+    "Thoi được ròi... Hiển sẽ khóc đấy 😢"
+];
+
+const yesBtn = document.getElementById("yesBtn");
+const noBtn = document.getElementById("noBtn");
+const sticker = document.getElementById("sticker");
+
+noBtn.addEventListener("click", function() {
+
+    noClicks++;
+
+    yesSize += 0.67;
+    yesBtn.style.transform = "scale(" + yesSize + ")";
+
+    sticker.style.transform = "scale(" + (1 + yesSize * 0.1) + ")";
+
+    noSize -= 0.12;
+    noBtn.style.transform = "scale(" + noSize + ")";
+
+    moveRight += 30;
+    noBtn.style.marginLeft = moveRight + "px";
+
+    if (noClicks <= guiltTexts.length) {
+        noBtn.innerText = guiltTexts[noClicks - 1];
+    }
+
+    if (noClicks > guiltTexts.length) {
+        document.body.innerHTML = `
+            <div style="margin-top:120px;">
+                <h1 style="color:#d00000; font-size:50px;">
+                    SAO LÂM GIÁM 😡
+                </h1>
+                <p style="font-size:25px;">
+                    đây là câu hội cuối đấy.
+                </p>
+                <button onclick="location.reload()" 
+                    style="padding:15px 30px; font-size:20px; 
+                    background:#ff4d6d; color:white; border:none; 
+                    border-radius:10px; cursor:pointer;">
+                    Okay okay, YES
+                </button>
+            </div>
+        `;
+    }
+
+
+});
+
+yesBtn.addEventListener("click", function() {
+
+    document.body.innerHTML = `
+        <div style="
+            background:#ffb3c6;
+            height:100vh;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+            align-items:center;
+            text-align:center;
+        ">
+            <h1 style="font-size:70px; color:#e63946;">
+                Hiển biết mà 😌❤️
+            </h1>
+            <p style="font-size:30px;">
+                Lâm thích Hiển ròi:333 💘
+            </p>
+            <div style="font-size:50px; margin-top:20px;">
+                ❤️ 💖 💕 💞 💓 💗
+            </div>
+        </div>
+    `;
+});
+</script>
+
+</body>
+</html>
